@@ -5,16 +5,21 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-
+    float moveX;
     private State state;
+
+    float dashCount;
     private enum State
     {
         Normal,
+        Dash,
+        Ult
     }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         state = State.Normal;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
@@ -24,13 +29,27 @@ public class playerController : MonoBehaviour
             case State.Normal:
                 movement();
                 jump();
+                StartCoroutine(dashSwitch(.1f));
+                break;
+            case State.Dash:
+                rb.gravityScale = 0f;
+                rb.velocity = transform.right * moveX * 3500f;
+                StartCoroutine(returnNormalByT(.04f));
                 break;
         }
+    }
+    IEnumerator returnNormalByT(float t)
+    {
+        yield return new WaitForSeconds(t);
+        rb.gravityScale = 1f;
+        dashCount--;
+        rb.velocity = Vector3.zero;
+        state = State.Normal;
     }
     void movement()
     {
         float extraMoveSpeed = 5f;
-        float moveX = Input.GetAxis("Horizontal") * Time.deltaTime;
+        moveX = Input.GetAxis("Horizontal") * Time.deltaTime;
         transform.position += moveX * transform.right * extraMoveSpeed;
     }
     public LayerMask groundLayer;
@@ -40,9 +59,9 @@ public class playerController : MonoBehaviour
     void jump()
     {
         float extraJumpSpeed = 5f;
-        if(Physics2D.OverlapCircleAll(transform.position,.51f, groundLayer).Length > 0)
+        if (Physics2D.Raycast(gCheckObject.transform.position, -transform.up, .1f, groundLayer)) 
         {
-            isGrounded = true;
+            StartCoroutine(jumpCd());
         }
         else
         {
@@ -51,13 +70,27 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && isGrounded) 
         {
             Debug.Log("Jump");
-            rb.velocity = extraJumpSpeed * transform.up;
+            rb.velocity = extraJumpSpeed * Vector3.up;
         }
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(gCheckObject.transform.position, .52f);
+        Gizmos.DrawRay(gCheckObject.transform.position, -transform.up);
         Gizmos.DrawWireCube(transform.position, transform.localScale);
+    }
+    IEnumerator jumpCd()
+    {
+        yield return new WaitForSeconds(.1f);
+        isGrounded = true;
+        dashCount = 1f;
+    }
+    IEnumerator dashSwitch(float t)
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCount > 0)
+        {
+            state = State.Dash;
+        }
+        yield return new WaitForSeconds(t);
     }
 }
