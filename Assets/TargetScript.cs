@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float hp;
+    private void Die()
     {
-        
+        if (hp <= 0)
+        {
+            //die
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void takeDamage(float value)
     {
-        
+        hp -= value;
     }
 }
