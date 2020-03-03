@@ -9,6 +9,8 @@ public class playerController : MonoBehaviour
     private State state;
 
     float dashCount;
+    public KeyCode ultKey;
+    uiController ui;
     private enum State
     {
         Normal,
@@ -17,6 +19,7 @@ public class playerController : MonoBehaviour
     }
     private void Start()
     {
+        ui = FindObjectOfType<uiController>();
         rb = GetComponent<Rigidbody2D>();
         state = State.Normal;
         Cursor.lockState = CursorLockMode.Locked;
@@ -27,24 +30,36 @@ public class playerController : MonoBehaviour
         {
             default:
             case State.Normal:
+                rb.simulated = true;
                 movement();
                 jump();
                 StartCoroutine(dashSwitch(.1f));
+                if (Input.GetKeyDown(ultKey) && ui.energyBar.value == 100) 
+                {
+                    state = State.Ult;
+                }
                 break;
             case State.Dash:
-                rb.gravityScale = 0f;
-                rb.velocity = transform.right * moveX * 3500f;
+                rb.simulated = false;
+                transform.position += transform.right * moveX * 50f;
                 StartCoroutine(returnNormalByT(.04f));
                 break;
+            case State.Ult:
+                ui.energyBar.value = 0;
+                rb.simulated = false;
+                returnNormalByT(3f);
+                break;
         }
+    }
+    void ult()
+    {
+
     }
     IEnumerator returnNormalByT(float t)
     {
         yield return new WaitForSeconds(t);
-        rb.gravityScale = 1f;
-        dashCount--;
-        rb.velocity = Vector3.zero;
         state = State.Normal;
+        dashCount--;
     }
     void movement()
     {

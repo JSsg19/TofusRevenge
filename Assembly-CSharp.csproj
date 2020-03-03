@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\uiController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/lucas.bang/Documents/GitHub/TofusRevenge/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
