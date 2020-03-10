@@ -8,6 +8,6 @@ public class uiController : MonoBehaviour
     public Slider energyBar;
     void Update()
     {
-        energyBar.value += Time.deltaTime;
+        energyBar.value += Time.deltaTime * 10f;
     }
 }

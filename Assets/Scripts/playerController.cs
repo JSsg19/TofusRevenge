@@ -26,6 +26,10 @@ public class playerController : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ui.energyBar.value = ui.energyBar.maxValue;
+        }
         switch (state)
         {
             default:
@@ -47,7 +51,8 @@ public class playerController : MonoBehaviour
             case State.Ult:
                 ui.energyBar.value = 0;
                 rb.simulated = false;
-                returnNormalByT(3f);
+                StartCoroutine(returnNormalByT(3f));
+                ult();
                 break;
         }
     }
