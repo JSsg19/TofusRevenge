@@ -17,10 +17,9 @@ public class Shooting : MonoBehaviour
         xaim = Input.GetAxisRaw("Horizontal");
         yaim = Input.GetAxisRaw("Vertical");
         #region Shoot
-        if (Input.GetKey(KeyCode.Space) && canShoot)
+        if (Input.GetKey(shootKey) && canShoot)
         {
             Shoot();
-            //prefab.transform.position = transform.position;
         }
         #endregion
     }
