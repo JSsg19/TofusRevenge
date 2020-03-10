@@ -5,11 +5,11 @@ using UnityEngine;
 public class TargetScript : MonoBehaviour
 {
     public float hp;
-    private void Die()
+    private void Update()
     {
         if (hp <= 0)
         {
-            //die
+            Destroy(gameObject);
         }
     }
     public void takeDamage(float value)
