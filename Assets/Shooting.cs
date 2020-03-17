@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public float damage = 1f;
     bool canShoot = true;
 
     float xaim, yaim, fireRate = .15f;
@@ -17,10 +18,9 @@ public class Shooting : MonoBehaviour
         xaim = Input.GetAxisRaw("Horizontal");
         yaim = Input.GetAxisRaw("Vertical");
         #region Shoot
-        if (Input.GetKey(KeyCode.Space) && canShoot)
+        if (Input.GetKey(shootKey) && canShoot)
         {
             Shoot();
-            //prefab.transform.position = transform.position;
         }
         #endregion
     }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FakeGoomba : MonoBehaviour
 {
     [SerializeField] [Range(1, 100)] float speed = 15;

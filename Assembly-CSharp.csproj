@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EnemyShooting.cs" />
     <Compile Include="Assets\FakeGoomba.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
     <Compile Include="Assets\Scripts\uiController.cs" />

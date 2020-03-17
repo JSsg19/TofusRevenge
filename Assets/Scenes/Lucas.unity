@@ -467,6 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ultKey: 275
+  aimKey: 274
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -485,9 +486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204bc3e2b64901e48ac6b91629cc7853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2572466354365341842}
-  player: {fileID: 837918392}
+  damage: 1
+  prefab: {fileID: 3148705137233863570, guid: b500fd6af54ff0c4bb62d0812c485d87, type: 3}
   speed: 10
+  shootKey: 276
 --- !u!1 &950852570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1105,7 @@ GameObject:
   - component: {fileID: 2572466354365341845}
   - component: {fileID: 2572466354365341864}
   - component: {fileID: 2572466354365341844}
+  - component: {fileID: 2572466354365341843}
   m_Layer: 0
   m_Name: FakeGoomba
   m_TagString: Untagged
@@ -1110,6 +1113,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2572466354365341843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572466354365341842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b85b052392f74b41bcf3d2af462647e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 5
 --- !u!50 &2572466354365341844
 Rigidbody2D:
   serializedVersion: 4

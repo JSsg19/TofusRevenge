@@ -10,12 +10,14 @@ public class playerController : MonoBehaviour
 
     float dashCount;
     public KeyCode ultKey;
+    public KeyCode aimKey;
     uiController ui;
     private enum State
     {
         Normal,
         Dash,
-        Ult
+        Ult,
+        Aiming
     }
     private void Start()
     {
@@ -42,6 +44,10 @@ public class playerController : MonoBehaviour
                 {
                     state = State.Ult;
                 }
+                if (Input.GetKeyDown(aimKey) && isGrounded)
+                {
+                    state = State.Aiming;
+                }
                 break;
             case State.Dash:
                 rb.simulated = false;
@@ -53,6 +59,12 @@ public class playerController : MonoBehaviour
                 rb.simulated = false;
                 StartCoroutine(returnNormalByT(3f));
                 ult();
+                break;
+            case State.Aiming:
+                if (Input.GetKeyUp(aimKey))
+                {
+                    StartCoroutine(returnNormalByT(0));
+                }
                 break;
         }
     }
