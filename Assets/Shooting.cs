@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public float damage = 1f;
     bool canShoot = true;
 
     float xaim, yaim, fireRate = .15f;
