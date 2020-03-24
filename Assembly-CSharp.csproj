@@ -63,13 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyShooting.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooting.cs" />
     <Compile Include="Assets\Scripts\FakeGoomba.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\TargetScript.cs" />
     <Compile Include="Assets\Scripts\uiController.cs" />
-    <Compile Include="Assets\Shooting.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/oscar.kristoffersso/Documents/GitHub/TofusRevenge/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
